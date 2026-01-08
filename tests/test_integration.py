@@ -15,9 +15,9 @@ from osm_to_xodr.netconvert import check_netconvert_available
     not check_netconvert_available(),
     reason="netconvert not available",
 )
-def test_convert_ekas_osm(sample_osm_file: Path, tmp_output_dir: Path) -> None:
-    """Test converting ekas.osm to XODR."""
-    output_file = tmp_output_dir / "ekas.xodr"
+def test_convert_osm_file(sample_osm_file: Path, tmp_output_dir: Path) -> None:
+    """Test converting OSM sample files to XODR."""
+    output_file = tmp_output_dir / f"{sample_osm_file.stem}.xodr"
 
     result = convert_osm_to_xodr(
         sample_osm_file,

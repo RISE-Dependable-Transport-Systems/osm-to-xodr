@@ -52,4 +52,4 @@ Read these when relevant to your task:
 
 - `netconvert.py` — All ~40 netconvert CLI parameters
 - `config.py` — Environment variable mappings
-- `data/osm/ekas.osm` — Primary test input
+- `tests/data/ekas.osm` — Primary test input

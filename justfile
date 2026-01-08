@@ -79,7 +79,7 @@ init-config:
 # Convert a sample OSM file (ekas.osm)
 convert-test:
     mkdir -p output
-    uv run osm-to-xodr convert data/osm/ekas.osm -o output/ekas_test.xodr -v
+    uv run osm-to-xodr convert tests/data/ekas.osm -o output/ekas_test.xodr -v
 
 # Convert any OSM file: just convert <input.osm> [output.xodr]
 convert input output="output/$(basename {{input}} .osm).xodr":

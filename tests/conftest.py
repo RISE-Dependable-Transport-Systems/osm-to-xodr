@@ -21,10 +21,10 @@ def osm_dir(data_dir: Path) -> Path:
     return data_dir / "osm"
 
 
-@pytest.fixture
-def sample_osm_file(osm_dir: Path) -> Path:
-    """Return path to the ekas.osm sample file."""
-    return osm_dir / "ekas.osm"
+@pytest.fixture(params=["ekas.osm", "hulta.osm"])
+def sample_osm_file(request) -> Path:
+    """Return path to an OSM sample file (parametrized)."""
+    return Path(__file__).parent / "data" / request.param
 
 
 @pytest.fixture

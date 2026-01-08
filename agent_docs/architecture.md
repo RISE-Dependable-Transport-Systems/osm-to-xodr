@@ -27,7 +27,7 @@ src/osm_to_xodr/
 ## Data Flow
 
 ```text
-Input: data/osm/ekas.osm
+Input: tests/data/ekas.osm
          │
          ▼
 ┌─────────────────────────────┐
@@ -64,5 +64,5 @@ Output: output/ekas.xodr (with <signal> elements)
 |------|---------|
 | `netconvert.py` | All netconvert parameters (~40) |
 | `config.py` | Pydantic settings with env var names |
-| `data/osm/ekas.osm` | Primary test input file |
+| `tests/data/ekas.osm` | Primary test input file |
 | `justfile` | Task runner commands |

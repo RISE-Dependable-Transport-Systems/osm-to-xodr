@@ -16,7 +16,10 @@ from osm_to_xodr.netconvert import (
     generate_opendrive,
     get_netconvert_version,
 )
-from osm_to_xodr.postprocess import convert_objects_to_signals
+from osm_to_xodr.postprocess import (
+    convert_objects_to_signals,
+    fix_georeference_for_carla,
+)
 
 
 @dataclass
@@ -188,6 +191,11 @@ def convert_osm_to_xodr(
         if not postprocess_result.success:
             logger.warning(f"Post-processing failed: {postprocess_result.error}")
             # Continue anyway - signals are optional enhancement
+
+        # Step 4: Fix geoReference for CARLA compatibility
+        logger.info("Step 4: Fixing geoReference for CARLA...")
+        # Now uses internal offset calculation via utm library
+        fix_georeference_for_carla(output_file)
 
         logger.info(f"Conversion complete: {output_file}")
 
