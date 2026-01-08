@@ -20,26 +20,27 @@ jobs:
   test:
     name: Test (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/eclipse-sumo/sumo@sha256:a49874e6e5e355de055e6a10eefd819d48fab8f0047c3130f782a7dfdf1cc189 # v1_25_0
     permissions:
       contents: read
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: ["3.11", "3.12"]
 
     env:
       PYTHON_VERSION: ${{ matrix.python-version }}
 
     steps:
+      - name: Install System Dependencies
+        run: |
+          apt update
+          apt install -y git
+
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           persist-credentials: false
-
-      - name: Install SUMO
-        run: |
-          sudo add-apt-repository ppa:sumo/stable -y
-          sudo apt update
-          sudo apt install -y sumo
 
       - name: Install uv
         uses: astral-sh/setup-uv@61cb8a9741eeb8a550a1b8544337180c0fc8476b # v7.2.0
