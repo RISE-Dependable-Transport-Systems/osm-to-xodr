@@ -1,21 +1,44 @@
-# osm-to-xodr
+# 🗺️ osm-to-xodr
+
+[![uv][uv-badge]][uv]
+[![PyPI][pypi-badge]][pypi]
+[![Python Version][python-badge]][pypi]
+[![Tests][tests-badge]][tests]
+[![License][license-badge]][license]
+
+[uv]: https://github.com/astral-sh/uv
+[uv-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json
+[pypi-badge]: https://img.shields.io/pypi/v/osm-to-xodr
+[pypi]: https://pypi.org/project/osm-to-xodr/
+[python-badge]: https://img.shields.io/pypi/pyversions/osm-to-xodr
+[tests-badge]: https://github.com/RISE-Dependable-Transport-Systems/osm-to-xodr/actions/workflows/test.yaml/badge.svg
+[tests]: https://github.com/RISE-Dependable-Transport-Systems/osm-to-xodr/actions/workflows/test.yaml
+[license-badge]: https://img.shields.io/github/license/RISE-Dependable-Transport-Systems/osm-to-xodr
+[license]: ./LICENSE
 
 Convert OpenStreetMap (`.osm`) files to OpenDRIVE (`.xodr`) using SUMO's `netconvert` with optimized defaults for driving simulators like CARLA.
 
-## Features
+---
 
-- **Sane Defaults**: Pre-configured netconvert parameters optimized for realistic road networks
-- **Traffic Sign Support**: Extracts and converts traffic signs to OpenDRIVE signals
-- **Configurable**: Settings via CLI arguments, environment variables, or `.env` file
-- **Modern Python CLI**: Built with Typer, Rich progress display, and Loguru logging
-- **Modular Architecture**: Clean separation of concerns for easy maintenance
+## ✨ Features
 
-## Requirements
+- 🎯 **Sane Defaults**: Pre-configured netconvert parameters optimized for realistic road networks
+- 🚦 **Traffic Sign Support**: Extracts and converts traffic signs to OpenDRIVE signals
+- ⚙️ **Highly Configurable**: Settings via CLI arguments, environment variables, or `.env` file
+- 🎨 **Modern Python CLI**: Built with Typer, Rich progress display, and Loguru logging
+- 🧩 **Modular Architecture**: Clean separation of concerns for easy maintenance
 
-- Python 3.11+
-- SUMO (for `netconvert` command)
+---
+
+## 📋 Requirements
+
+- **Python**: 3.11 or higher ✅
+- **SUMO**: For `netconvert` command 🚗
 
 ### Installing SUMO
+
+> [!IMPORTANT]
+> SUMO's `netconvert` is required for conversion. Choose your installation method below:
 
 **Linux (Ubuntu/Debian):**
 
@@ -37,46 +60,67 @@ brew install sumo
 ```
 
 **Windows:**
+
 Download from [SUMO Downloads](https://sumo.dlr.de/docs/Downloads.html)
 
-## Installation
+## 📦 Installation
 
-### Using uv (recommended)
+> [!TIP]
+> Use **uvx** to run the tool instantly without installation — perfect for quick conversions:
+>
+> ```bash
+> uvx osm-to-xodr convert map.osm
+> ```
+
+### Install from PyPI
 
 ```bash
-# Install as a tool
-uv tool install git+https://github.com/kallegrens/osm-to-xodr.git
+# With uv (recommended)
+uv tool install osm-to-xodr
 
-# Or clone and install in development mode
-git clone https://github.com/kallegrens/osm-to-xodr.git
+# Or with pip
+pip install osm-to-xodr
+```
+
+### From Source
+
+```bash
+git clone https://github.com/RISE-Dependable-Transport-Systems/osm-to-xodr.git
 cd osm-to-xodr
 uv sync
 ```
 
-### Using pip
+## 🚀 Quick Start
+
+### 1. Verify SUMO Installation
+
+> [!NOTE]
+> This command checks if `netconvert` is available and shows version information.
 
 ```bash
-pip install git+https://github.com/kallegrens/osm-to-xodr.git
+osm-to-xodr check
 ```
 
-## Quick Start
+### 2. Convert Your First Map
 
 ```bash
-# Check if netconvert is available
-osm-to-xodr check
-
-# Convert an OSM file with defaults
+# Basic conversion with optimized defaults
 osm-to-xodr convert map.osm
 
-# Convert with custom output path
+# Custom output location
 osm-to-xodr convert map.osm -o output/my_network.xodr
 
-# Convert with verbose output
+# Enable verbose logging
 osm-to-xodr convert map.osm -v
+```
 
-# Generate .env configuration template
+### 3. (Optional) Generate Configuration Template
+
+```bash
 osm-to-xodr init-config
 ```
+
+This creates a `.env` file with all available settings for customization.
 
 ## CLI Reference
 
@@ -84,7 +128,7 @@ osm-to-xodr init-config
 
 Convert an OpenStreetMap file to OpenDRIVE format.
 
-```
+```text
 Usage: osm-to-xodr convert [OPTIONS] INPUT_FILE
 
 Arguments:
@@ -122,13 +166,16 @@ Check if netconvert is available and show version information.
 
 Generate a template `.env` configuration file with all available settings.
 
-## Configuration
+## ⚙️ Configuration
 
 Settings can be configured via:
 
 1. **CLI arguments** (highest priority)
 2. **Environment variables** with `OSM_TO_XODR_` prefix
 3. **`.env` file** in the current directory
+
+> [!TIP]
+> CLI flags take precedence over environment variables and `.env` file settings.
 
 ### Environment Variables
 
@@ -157,9 +204,9 @@ OSM_TO_XODR_KEEP_INTERMEDIATE=false
 OSM_TO_XODR_VERBOSE=false
 ```
 
-## Project Structure
+## 📁 Project Structure
 
-```
+```text
 osm-to-xodr/
 ├── src/osm_to_xodr/
 │   ├── __init__.py      # Package metadata
@@ -176,13 +223,13 @@ osm-to-xodr/
 └── pyproject.toml       # Project configuration
 ```
 
-## Development
+## 🛠️ Development
 
 ### Setup
 
 ```bash
 # Clone repository
-git clone https://github.com/kallegrens/osm-to-xodr.git
+git clone https://github.com/RISE-Dependable-Transport-Systems/osm-to-xodr.git
 cd osm-to-xodr
 
 # Install with dev dependencies
@@ -236,7 +283,42 @@ uv run pytest -m integration
 uv run pytest --cov=osm_to_xodr --cov-report=html
 ```
 
-## How It Works
+> [!NOTE]
+> Integration tests require SUMO's `netconvert` to be installed and available in your PATH.
+
+## 🔧 Troubleshooting
+
+### ❌ netconvert Not Found
+
+> [!WARNING]
+> If you see `netconvert not found` errors:
+>
+> - ✅ Verify SUMO is installed: `netconvert --version`
+> - ✅ Check that SUMO's `bin` directory is in your PATH
+> - ✅ On Linux, ensure you installed `sumo` not just `sumo-tools`
+
+### 🗺️ Conversion Errors
+
+> [!TIP]
+> If conversion fails:
+>
+> - Use `--verbose` flag to see detailed netconvert output
+> - Check your OSM file is valid (open in JOSM or similar)
+> - Try with `--keep-intermediate` to inspect intermediate `.net.xml` files
+> - Reduce map complexity by focusing on smaller areas
+
+### ⚠️ Missing Road Features
+
+> [!NOTE]
+> If converted roads are missing expected features:
+>
+> - Ensure your OSM data has proper road tags (check on OpenStreetMap.org)
+> - Some features require specific flags (e.g., `--no-sidewalks` disables sidewalk import)
+> - Use `--keep-geometry` to prevent road geometry simplification
+
+---
+
+## 🔍 How It Works
 
 The conversion process has three steps:
 
@@ -244,11 +326,13 @@ The conversion process has three steps:
 2. **Generate OpenDRIVE**: Second pass creates the road network with signs as objects
 3. **Post-process Signals**: Python converts `<object>` elements to proper `<signal>` elements for CARLA compatibility
 
-## License
+---
+
+## 📄 License
 
 MIT License - See [LICENSE](LICENSE) for details.
 
-## Credits
+## 🙌 Credits
 
 - [SUMO](https://www.eclipse.org/sumo/) - Simulation of Urban Mobility
 - [OpenDRIVE](https://www.asam.net/standards/detail/opendrive/) - ASAM OpenDRIVE standard

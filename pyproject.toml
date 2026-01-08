@@ -42,10 +42,10 @@ dependencies = [
 osm-to-xodr = "osm_to_xodr.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/kallegrens/osm-to-xodr"
-Repository = "https://github.com/kallegrens/osm-to-xodr"
-Issues = "https://github.com/kallegrens/osm-to-xodr/issues"
-Changelog = "https://github.com/kallegrens/osm-to-xodr/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/RISE-Dependable-Transport-Systems/osm-to-xodr"
+Repository = "https://github.com/RISE-Dependable-Transport-Systems/osm-to-xodr"
+Issues = "https://github.com/RISE-Dependable-Transport-Systems/osm-to-xodr/issues"
+Changelog = "https://github.com/RISE-Dependable-Transport-Systems/osm-to-xodr/blob/main/CHANGELOG.md"
 
 [build-system]
 requires = ["hatchling>=1.21.0"]
