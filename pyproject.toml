@@ -1,6 +1,6 @@
 [project]
 name = "osm-to-xodr"
-version = "0.2.1"
+version = "0.3.0"
 description = "Convert OpenStreetMap (.osm) files to OpenDRIVE (.xodr) using SUMO netconvert with sane defaults"
 readme = "README.md"
 license = { text = "MIT" }
