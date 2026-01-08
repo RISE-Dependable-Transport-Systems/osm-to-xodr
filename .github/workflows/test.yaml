@@ -21,7 +21,9 @@ jobs:
     name: Test (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/eclipse-sumo/sumo@sha256:a49874e6e5e355de055e6a10eefd819d48fab8f0047c3130f782a7dfdf1cc189 # v1_25_0
+      # Use nightly build to get SUMO 1.25.0+ features until next stable release
+      # main-2026-01-08 (v1.25.0+)
+      image: ghcr.io/eclipse-sumo/sumo@sha256:3e9bdae5e3ec07d28fe0b08d20a8c70f4f06a799f3b19d79eeb4691ae6a0c7f4
     permissions:
       contents: read
     strategy:
